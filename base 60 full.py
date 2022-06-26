@@ -1,4 +1,5 @@
 import math
+import numpy as np
 
 print('what do you want to do?')
 print('1- convert to base 60. ')
@@ -6,7 +7,7 @@ print('2- obtain a single square number in b60.')
 print('3- multiply 2 numbers in b60')
 print('4- convert from base 60')
 print('5- create list of prime numbers in base 60')
-print('6- create a list of square numbers in base 60')
+print('6- create a list of prime numbers and save txt file')
 
 T=float(input())
 
@@ -73,7 +74,7 @@ if T==1:
             list.pop()
             list.pop()
             
-    if len(list)>5 and list[len(list)-1]==59 and list[len(list)-2]==59 and list[len(list)-3]==59 and list[len(list)-4]==59:#        for h in range(1,4):
+    if len(list)>5 and list[len(list)-1]==59 and list[len(list)-2]==59 and list[len(list)-3]==59 and list[len(list)-4]==59:
             for h in range(0,5):
                 list.pop()
                 h+=1
@@ -125,7 +126,7 @@ elif T==2:
             list.pop()
             list.pop()
             
-    if len(list)>5 and list[len(list)-1]==59 and list[len(list)-2]==59 and list[len(list)-3]==59 and list[len(list)-4]==59:#        for h in range(1,4):
+    if len(list)>5 and list[len(list)-1]==59 and list[len(list)-2]==59 and list[len(list)-3]==59 and list[len(list)-4]==59:
             for h in range(0,5):
                 list.pop()
                 h+=1
@@ -181,7 +182,7 @@ elif T==3:
             list.pop()
             list.pop()
         
-    if len(list)>5 and list[len(list)-1]==59 and list[len(list)-2]==59 and list[len(list)-3]==59 and list[len(list)-4]==59:#        for h in range(1,4):
+    if len(list)>5 and list[len(list)-1]==59 and list[len(list)-2]==59 and list[len(list)-3]==59 and list[len(list)-4]==59:
             for h in range(0,5):
                 list.pop()
                 h+=1
@@ -217,7 +218,7 @@ elif T==4:
     print(list,'in decimal is',k)
     
 #---------------------if T=5, produce a list of primes -------------------------------
-elif T==5:
+elif T==5 or T==6:
     print('input the highest number you wish to check (must be<1e8)')
     high=int(float(input()))
     primenos=[]
@@ -268,7 +269,7 @@ elif T==5:
             list.pop()
             
             
-        if len(list)>5 and list[len(list)-1]==59 and list[len(list)-2]==59 and list[len(list)-3]==59 and list[len(list)-4]==59:#        for h in range(1,4):
+        if len(list)>5 and list[len(list)-1]==59 and list[len(list)-2]==59 and list[len(list)-3]==59 and list[len(list)-4]==59:
             for h in range(0,5):
                 list.pop()
                 h+=1
@@ -278,8 +279,32 @@ elif T==5:
             list.append(temp)
         
         listofprimes.append(list)
+        
+    if T==6:
+            with open('readme.csv', 'w') as f: #this will only create a file with coordinates to produce a 60x60x60 cube
+                for item in listofprimes:
+                    if len(item)<=3:
+                        if len(item)==1:
+                            f.write('0   ')
+                            f.write('0   ')
+                            f.write(str(item[0]   ))
+                            f.write('\n')
+                        elif len(item)==2:
+                            f.write('0   ')
+                            f.write(str(item[0]))
+                            f.write('   ')
+                            f.write(str(item[1]))
+                            f.write('\n')
+                        else:
+                            f.write(str(item[0]))
+                            f.write('   ')
+                            f.write(str(item[1]))
+                            f.write('   ')
+                            f.write(str(item[2]))
+                            f.write('\n')     
+                    
     print(listofprimes)
 
 #----------------------if T=other, instruct to input again----------------------------
 else:
-    print('T must be 1,2,3, or 4. Please run again')
+    print('T must be an integer 1-6. Please run again')
